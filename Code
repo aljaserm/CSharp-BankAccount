@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AccountBalanceMJ
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            double dblStartBalance = 0.0, dblDeposits = 0.0, dblwithdrawls = 0.0, dblbalance = 0.0;
+            try
+            {
+                dblStartBalance = double.Parse(txtStartBalance.Text);
+                dblDeposits = double.Parse(txtDeposits.Text);
+                dblwithdrawls = double.Parse(txtWithdrwal.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                return;
+            }
+            dblbalance = (dblDeposits + dblStartBalance) - dblwithdrawls;
+            lblBalance.Text = dblbalance.ToString("c");
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtStartBalance.Text = string.Empty;
+            txtDeposits.Text = string.Empty;
+            txtWithdrwal.Text = string.Empty;
+            lblBalance.Text = string.Empty;
+            txtStartBalance.Focus();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
